@@ -7,8 +7,12 @@ const Contacts = (props) => {
         <Container>
                 <Row>
                     {
-                        props.userData.map((user, index)=>{
-                            return<Contact  userInfo={user} key={index}/>
+                        props.userData.map((user)=>{
+                            return<Contact  
+                            userInfo={user} 
+                            key= {user.id} 
+                            DeleteUser={props.DeleteUser}
+                            editUser={props.editUser}/>
                         })
                     }
                     

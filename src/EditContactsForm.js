@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Form, Button } from "react-bootstrap";
-import './App.css';
+import { Form, Button,} from "react-bootstrap";
 
-class ContactForm extends Component {
+class EditContactsForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            phone: "",
-            locations: "",
+            name: props.userInfo.name,
+            phone: props.userInfo.phone,
+            locations: props.userInfo.locations,
+            id: props.userInfo.id,
         }
     }
     handleChange = (e) => {
@@ -16,27 +16,29 @@ class ContactForm extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-            console.log(this.state)
+
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addUser(this.state)
+        this.props.editUser(this.state.id, this.state)
         this.setState({
             name: "",
             phone: "",
             locations: "",
         })
+        this.props.closeModal()
     }
     render() {
         return (
-            <Form onSubmit={this.handleSubmit} className="myForm">
+            <>
+            <Form onSubmit={this.handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter name" name='name' value={this.state.name} onChange={this.handleChange} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Phone Number</Form.Label>
-                    <Form.Control type="number" placeholder="Enter Phone number" name='phone' value={this.state.phone} onChange={this.handleChange} />
+                    <Form.Control type="number" placeholder=" Enter Phone Number" name='phone' value={this.state.phone} onChange={this.handleChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -47,7 +49,9 @@ class ContactForm extends Component {
                     Submit
                 </Button>
             </Form>
+        </>
         );
     }
 }
-export default ContactForm;
+
+export default EditContactsForm;

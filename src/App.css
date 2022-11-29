@@ -1,3 +1,11 @@
-.App {
+h1 {
   text-align: center;
+}
+.App{
+  background-color: #CFFDE1;
+}
+.myForm{
+  border: 1px solid black;
+  height: 450px;
+  background-color: #F3EFE0;
 }
